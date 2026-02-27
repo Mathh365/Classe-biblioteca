@@ -1,0 +1,5 @@
+.gitattributes
+Classe biblioteca.sln
+ClasseBiblioteca/bin
+ClasseBiblioteca/obj
+ClasseBiblioteca/ClasseBiblioteca.csproj
