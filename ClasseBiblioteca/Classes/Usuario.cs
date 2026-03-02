@@ -3,8 +3,8 @@ namespace ClasseBiblioteca;
 public class Usuario
 {
     public string Nome {get; private set;}
-    int ID {get; set;}
-    private Livro[] LivrosEmprestados = new Livro[3];
+    public int ID {get; private set;}
+    private List<Livro> LivrosEmprestados = new List<Livro>();
 
     public Usuario(string nome, int id)
     {
@@ -14,18 +14,23 @@ public class Usuario
 
     public bool PodeEmprestar()
     {
-        if (LivrosEmprestados.Length >= 3) return false;
-        if (LivrosEmprestados.Length < 3) return true;
+        if (this.LivrosEmprestados.Count >= 3) return false;
+        if (this.LivrosEmprestados.Count < 3) return true;
         return false;
     }
 
-    public void AdicionarEmprestado()
+    public void AdicionarEmprestado(Livro livro)
     {
-        
+        LivrosEmprestados.Add(livro);
     }
 
     public void RemoverDevolvido()
     {
         
+    }
+
+    public string Infos()
+    {
+        return ($"Nome: {this.Nome} / ID: {this.ID} / Livros emprestados: {LivrosEmprestados.Count}");
     }
 }

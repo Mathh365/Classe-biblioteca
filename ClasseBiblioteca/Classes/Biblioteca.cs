@@ -4,18 +4,20 @@ namespace ClasseBiblioteca;
 
 public class Biblioteca
 {
-    public int ID {get; private set;} = 0;
-    private List<Livro> ListaDeLivros = new List<Livro>();
-    private List<Usuario> ListaDeUsuarios = new List<Usuario>();
+        private int ID = 0;
+        public List<Livro> ListaDeLivros {get; private set;} = new List<Livro>();
+        public List<Usuario> ListaDeUsuarios {get; private set;} = new List<Usuario>();
+    
 
-    public Biblioteca()
+    public void AddUsuario(string nome)
     {
-        
+        ID ++;
+        ListaDeUsuarios.Add(new Usuario(nome, ID));
     }
-
-    public void AddUsuario(Usuario nome)
+    
+    public void AddLivro(int isbn, string titulo, string autor)
     {
-        ListaDeUsuarios.Add(nome);
+        ListaDeLivros.Add(new Livro(isbn, titulo, autor));
     }
 
     public void ListarUsuarios()
@@ -25,9 +27,24 @@ public class Biblioteca
         foreach (var item in ListaDeUsuarios)
         {
             indice++;
-            Console.WriteLine($"{indice} - {item.Nome}");
+            Console.WriteLine($"{indice} - {item.Infos()}");
         }
     }
 
-    
+    public void ListarLivros()
+    {
+        foreach(var item in ListaDeLivros)
+        {
+            Console.WriteLine(item.Info());
+        }
+    }
+
+    public void EmprestarLivro(int id, Livro livro)
+    {
+        Usuario user = ListaDeUsuarios[id - 1];
+        if (user.PodeEmprestar())
+        {
+            livro.Emprestar(user);
+        }
+    }
 }

@@ -6,6 +6,7 @@ public class Livro
     public string Autor {get; set;}
     public int Isbn {get; set;}
     public bool IsEmprestado {get; private set;} = false;
+    private Usuario? Possuidor;
 
     public Livro(int isbn, string titulo, string autor)
     {
@@ -14,7 +15,7 @@ public class Livro
         this.Isbn = isbn;
     }
 
-    public void Emprestar()
+    public void Emprestar(Usuario user)
     {
         if (IsEmprestado)
         {
@@ -22,12 +23,19 @@ public class Livro
         }
         else
         {
-            Console.WriteLine("Livro livre, emprestando neste momento");
+            Console.WriteLine($"Livro {this.Titulo} disponivel para emprestimo, transferindo para {user.Nome}");
+            Possuidor = user;
             IsEmprestado = true;
+            user.AdicionarEmprestado(this);
         }
     }
     public void Devolver()
     {
         
+    }
+
+    public string Info()
+    {
+        return ($"Titulo: {this.Titulo} / ISBN: {this.Isbn} / Autor: {this.Autor} / Esta emprestado? {IsEmprestado}");
     }
 }
