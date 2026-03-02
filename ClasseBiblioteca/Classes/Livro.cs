@@ -2,8 +2,6 @@ namespace ClasseBiblioteca;
 
 public class Livro
 {
-    private int v;
-
     public string Titulo {get; set;}
     public string Autor {get; set;}
     public int Isbn {get; set;}
@@ -21,7 +19,8 @@ public class Livro
         if (IsEmprestado)
         {
             Console.WriteLine("Este livro ja esta emprestado por outra pessoa");
-        } else
+        }
+        else
         {
             Console.WriteLine("Livro livre, emprestando neste momento");
             IsEmprestado = true;
