@@ -4,7 +4,7 @@ public class Usuario
 {
     public string Nome {get; private set;}
     public int ID {get; private set;}
-    private List<Livro> LivrosEmprestados = new List<Livro>();
+    public List<Livro> LivrosEmprestados {get; private set;} = new List<Livro>();
 
     public Usuario(string nome, int id)
     {
@@ -24,9 +24,9 @@ public class Usuario
         LivrosEmprestados.Add(livro);
     }
 
-    public void RemoverDevolvido()
+    public void RemoverDevolvido(Livro livro)
     {
-        
+        LivrosEmprestados.Remove(livro);
     }
 
     public string Infos()

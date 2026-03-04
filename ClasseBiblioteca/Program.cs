@@ -13,5 +13,10 @@ bib.AddUsuario("maria");
 // bib.ListarLivros();
 
 bib.EmprestarLivro(2, bib.ListaDeLivros[1]);
+bib.EmprestarLivro(2, bib.ListaDeLivros[3]);
 bib.EmprestarLivro(2, bib.ListaDeLivros[4]);
-Console.WriteLine(bib.ListaDeUsuarios[1].Infos());
+// Console.WriteLine(bib.ListaDeUsuarios[1].Infos());
+bib.LivrosDoUsuario(2);
+
+// bib.DevolverLivro(2, bib.ListaDeLivros[1]);
+// Console.WriteLine(bib.ListaDeUsuarios[1].Infos());

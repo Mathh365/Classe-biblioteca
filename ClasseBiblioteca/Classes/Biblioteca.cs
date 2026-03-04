@@ -33,18 +33,34 @@ public class Biblioteca
 
     public void ListarLivros()
     {
-        foreach(var item in ListaDeLivros)
-        {
-            Console.WriteLine(item.Info());
-        }
+        foreach(var item in ListaDeLivros) Console.WriteLine(item.Info());
     }
 
-    public void EmprestarLivro(int id, Livro livro)
+    public void EmprestarLivro(int idDoUsuario, Livro livro)
     {
-        Usuario user = ListaDeUsuarios[id - 1];
-        if (user.PodeEmprestar())
+        Usuario user = ListaDeUsuarios[idDoUsuario - 1];
+        if (user.PodeEmprestar()) livro.Emprestar(user);
+        else Console.WriteLine("Voce ja tem 3 livros, por favor devolva um antes de emprestar um novo");
+    }
+
+    public void DevolverLivro(int idDoUsuario, Livro livro)
+    {
+        Usuario user = ListaDeUsuarios[idDoUsuario - 1];
+        if (user.LivrosEmprestados.Contains(livro)) livro.Devolver(user);
+        else Console.WriteLine("Este usuario nao esta na posse deste livro");
+    }
+
+    public void LivrosDoUsuario(int idDoUsuario)
+    {
+        Usuario user = ListaDeUsuarios[idDoUsuario - 1];
+        int indice = 0;
+
+        Console.WriteLine($"\nLivros do usuario {user.Nome}");
+
+        foreach (var item in user.LivrosEmprestados)
         {
-            livro.Emprestar(user);
+            indice++;
+            Console.WriteLine($"{indice} - {item.Titulo} / ISBN: {item.Isbn}");            
         }
     }
 }

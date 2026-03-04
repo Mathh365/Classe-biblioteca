@@ -29,9 +29,12 @@ public class Livro
             user.AdicionarEmprestado(this);
         }
     }
-    public void Devolver()
+    public void Devolver(Usuario user)
     {
-        
+        Console.WriteLine($"Devolvendo o livro {this.Titulo}");
+        IsEmprestado = false;
+        Possuidor = null;
+        user.RemoverDevolvido(this);
     }
 
     public string Info()
