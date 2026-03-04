@@ -14,9 +14,7 @@ public class Usuario
 
     public bool PodeEmprestar()
     {
-        if (this.LivrosEmprestados.Count >= 3) return false;
-        if (this.LivrosEmprestados.Count < 3) return true;
-        return false;
+        return (LivrosEmprestados.Count < 3);
     }
 
     public void AdicionarEmprestado(Livro livro)
